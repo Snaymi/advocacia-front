@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { OrganimsSecondLand, OrganismFirstLand, OrganismThirdLand } from '../organism';
+import { OrganimsSecondLand, OrganismFirstLand, OrganismFourthLand, OrganismThirdLand, OrganismFifthLand, OrganismSixthLand, OrganismSeventhLand } from '../organism';
 
 
 </script>
@@ -8,4 +8,8 @@ import { OrganimsSecondLand, OrganismFirstLand, OrganismThirdLand } from '../org
     <OrganismFirstLand />
     <OrganimsSecondLand />
     <OrganismThirdLand />
+    <OrganismFourthLand />
+    <OrganismFifthLand />
+    <OrganismSixthLand />
+    <OrganismSeventhLand />
 </template>

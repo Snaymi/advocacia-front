@@ -12,7 +12,7 @@ import logo from '../../img/logo.svg'
 
         <img
           :src="logo"
-          class="w-[42px]"
+          class="border border-white p-1 w-[60px]"
           alt="Logo"
         />
 
