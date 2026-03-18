@@ -7,7 +7,7 @@ type Testimonial = {
   role: string
 }
 
-const testimonials: Testimonial[] = [
+const testimonials: [Testimonial, ...Testimonial[]] = [
   {
     quote:
       'O escritório trouxe clareza para decisões que afetavam diretamente nosso caixa. Os pareceres mudaram como o conselho enxerga risco.',
@@ -30,7 +30,9 @@ const testimonials: Testimonial[] = [
 
 const currentIndex = ref(0)
 
-const currentTestimonial = computed(() => testimonials[currentIndex.value])
+const currentTestimonial = computed<Testimonial>(() => {
+  return testimonials[currentIndex.value] ?? testimonials[0]
+})
 
 function nextTestimonial() {
   currentIndex.value =
@@ -43,6 +45,7 @@ function prevTestimonial() {
 }
 
 function goToTestimonial(index: number) {
+  if (index < 0 || index >= testimonials.length) return
   currentIndex.value = index
 }
 </script>
@@ -52,7 +55,7 @@ function goToTestimonial(index: number) {
     <div class="mx-auto w-full max-w-[1400px] px-6">
       <div class="mx-auto max-w-[1600px]">
         <h2
-          class="mx-auto max-w-[956px] text-center text-[40px] font-medium leading-[1.05] tracking-[-0.04em] text-[#123F63] "
+          class="mx-auto max-w-[956px] text-center text-[40px] font-medium leading-[1.05] tracking-[-0.04em] text-[#123F63]"
         >
           Empresas que enxergam o jurídico como estratégia escolhem o Lemos
           Ribeiro
@@ -70,7 +73,7 @@ function goToTestimonial(index: number) {
 
           <div class="mx-auto flex max-w-[950px] flex-col items-center text-center">
             <p
-              class=" text-[20px] italic font-normal leading-[1.2] tracking-[-0.02em] text-[#B7A6B2]"
+              class="text-[20px] italic font-normal leading-[1.2] tracking-[-0.02em] text-[#B7A6B2]"
             >
               “{{ currentTestimonial.quote }}”
             </p>
@@ -95,7 +98,7 @@ function goToTestimonial(index: number) {
                 :aria-label="`Ir para depoimento ${index + 1}`"
                 class="h-[14px] w-[14px] rounded-full transition"
                 :class="
-                  index === currentIndex ? 'bg-white' : 'bg-white/25 hover:bg-white/45'
+                  index === currentIndex ? 'bg-[#B69800]' : 'bg-[#D7CCD3] hover:bg-[#B7A6B2]'
                 "
                 @click="goToTestimonial(index)"
               />
